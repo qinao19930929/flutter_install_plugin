@@ -111,7 +111,6 @@ class InstallPlugin(private val registrar: Registrar) : MethodCallHandler {
         val uri = Uri.fromFile(file)
         intent.setDataAndType(uri, "application/vnd.android.package-archive")
         context.startActivity(intent)
-        android.os.Process.killProcess(android.os.Process.myPid()) //如果不加，最后不会提示完成、打开。
     }
 
     /**
@@ -131,6 +130,5 @@ class InstallPlugin(private val registrar: Registrar) : MethodCallHandler {
         val uri: Uri = FileProvider.getUriForFile(context, "$appId.fileProvider.install", file)
         intent.setDataAndType(uri, "application/vnd.android.package-archive")
         context.startActivity(intent)
-        android.os.Process.killProcess(android.os.Process.myPid()) //如果不加，最后不会提示完成、打开。
     }
 }
