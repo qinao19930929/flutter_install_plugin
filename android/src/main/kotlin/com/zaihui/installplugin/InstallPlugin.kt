@@ -95,6 +95,7 @@ class InstallPlugin(private val registrar: Registrar) : MethodCallHandler {
             val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
             intent.data = Uri.parse("package:" + activity.packageName)
             activity.startActivityForResult(intent, installRequestCode)
+            android.os.Process.killProcess(android.os.Process.myPid()) //如果不加，最后不会提示完成、打开。
         } else {
             throw RuntimeException("VERSION.SDK_INT < O")
         }
